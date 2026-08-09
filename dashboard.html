@@ -1,1 +1,1758 @@
+```html
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+
+    <title>PixelBot Dashboard</title>
+
+    <link rel="stylesheet" href="css/dashboard.css">
+</head>
+
+<body data-theme="dark">
+
+    <!-- Background -->
+    <div id="dashboard-background"></div>
+
+
+    <!-- ================================
+         SIDEBAR
+    ================================= -->
+
+    <aside class="sidebar">
+
+        <div class="brand">
+
+            <div class="brand-logo">
+                🤖
+            </div>
+
+            <div>
+                <h2>PixelBot</h2>
+                <span>Discord Dashboard</span>
+            </div>
+
+        </div>
+
+
+        <!-- Server -->
+        <div class="server-box">
+
+            <div class="server-icon">
+                🎮
+            </div>
+
+            <div class="server-info">
+
+                <strong>My Server</strong>
+
+                <span>Manage Server</span>
+
+            </div>
+
+            <div class="server-arrow">
+                ▼
+            </div>
+
+        </div>
+
+
+        <!-- Navigation -->
+        <nav class="sidebar-nav">
+
+            <div class="nav-title">
+                MAIN
+            </div>
+
+
+            <a
+                href="#"
+                class="nav-link active"
+                data-page="overview"
+            >
+                <span>🏠</span>
+                Dashboard
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="moderation"
+            >
+                <span>🛡️</span>
+                Moderation
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="commands"
+            >
+                <span>🤖</span>
+                Commands
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="tickets"
+            >
+                <span>🎫</span>
+                Tickets
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="welcome"
+            >
+                <span>👋</span>
+                Welcome
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="logs"
+            >
+                <span>📜</span>
+                Logs
+            </a>
+
+
+            <div class="nav-title">
+                INSIGHTS
+            </div>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="analytics"
+            >
+                <span>📊</span>
+                Analytics
+            </a>
+
+
+            <div class="nav-title">
+                SYSTEM
+            </div>
+
+
+            <a
+                href="#"
+                class="nav-link"
+                data-page="settings"
+            >
+                <span>⚙️</span>
+                Settings
+            </a>
+
+
+            <a
+                href="#"
+                class="nav-link premium-link"
+                data-page="premium"
+            >
+                <span>💎</span>
+                Premium
+                <b>PRO</b>
+            </a>
+
+        </nav>
+
+
+        <!-- Sidebar bottom -->
+        <div class="sidebar-bottom">
+
+            <div class="bot-status">
+
+                <div class="status-dot"></div>
+
+                <div>
+
+                    <strong>Bot Online</strong>
+
+                    <small>
+                        PixelBot is running
+                    </small>
+
+                </div>
+
+            </div>
+
+
+            <a
+                href="index.html"
+                class="website-link"
+            >
+                ← Back to website
+            </a>
+
+        </div>
+
+    </aside>
+
+
+
+    <!-- ================================
+         MAIN
+    ================================= -->
+
+    <main class="main-content">
+
+
+        <!-- Topbar -->
+        <header class="topbar">
+
+            <div class="page-heading">
+
+                <span id="breadcrumb">
+                    Dashboard
+                </span>
+
+                <h1 id="page-title">
+                    Overview
+                </h1>
+
+            </div>
+
+
+            <div class="mobile-brand">
+
+                <div class="brand-logo">
+                    🤖
+                </div>
+
+                <strong>
+                    PixelBot
+                </strong>
+
+            </div>
+
+
+            <div class="top-actions">
+
+
+                <!-- Search -->
+                <button
+                    class="top-button"
+                    id="search-button"
+                    title="Search"
+                >
+                    🔍
+                </button>
+
+
+                <!-- Theme -->
+                <button
+                    class="top-button"
+                    id="theme-toggle"
+                    title="Toggle Theme"
+                >
+                    🌙
+                </button>
+
+
+                <!-- Notifications -->
+                <button
+                    class="top-button"
+                    id="notification-button"
+                    title="Notifications"
+                >
+                    🔔
+                    <span class="notification-dot"></span>
+                </button>
+
+
+                <!-- User -->
+                <button class="user-button">
+
+                    <div class="user-avatar">
+                        W
+                    </div>
+
+                    <div class="user-details">
+
+                        <strong>
+                            Will
+                        </strong>
+
+                        <span>
+                            Administrator
+                        </span>
+
+                    </div>
+
+                    <span>
+                        ▼
+                    </span>
+
+                </button>
+
+            </div>
+
+        </header>
+
+
+
+        <!-- ================================
+             PAGE CONTENT
+        ================================= -->
+
+        <div class="page-container">
+
+
+            <!-- =====================================
+                 OVERVIEW
+            ====================================== -->
+
+            <section
+                id="page-overview"
+                class="dashboard-page active-page"
+            >
+
+
+                <!-- Welcome -->
+                <div class="welcome-banner">
+
+                    <div class="welcome-text">
+
+                        <span class="eyebrow">
+                            PIXELBOT DASHBOARD
+                        </span>
+
+                        <h2>
+                            Welcome back,
+                            <span>Will!</span>
+                        </h2>
+
+                        <p>
+                            Manage your Discord server,
+                            configure PixelBot and keep
+                            your community running smoothly.
+                        </p>
+
+                        <button
+                            class="primary-button"
+                            data-page-button="settings"
+                        >
+                            ⚙️ Manage Settings
+                        </button>
+
+                    </div>
+
+
+                    <div class="welcome-robot">
+                        🤖
+                    </div>
+
+                </div>
+
+
+
+                <!-- Statistics -->
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            SERVER STATISTICS
+                        </span>
+
+                        <h2>
+                            Your Server
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="stats-grid">
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon blue">
+                            👥
+                        </div>
+
+                        <div class="stat-info">
+
+                            <span>
+                                MEMBERS
+                            </span>
+
+                            <strong id="member-count">
+                                0
+                            </strong>
+
+                            <small class="positive">
+                                ● Server members
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon purple">
+                            🛡️
+                        </div>
+
+                        <div class="stat-info">
+
+                            <span>
+                                MOD ACTIONS
+                            </span>
+
+                            <strong id="moderated-count">
+                                0
+                            </strong>
+
+                            <small>
+                                Actions recorded
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon cyan">
+                            🎫
+                        </div>
+
+                        <div class="stat-info">
+
+                            <span>
+                                OPEN TICKETS
+                            </span>
+
+                            <strong id="ticket-count">
+                                0
+                            </strong>
+
+                            <small>
+                                Currently open
+                            </small>
+
+                        </div>
+
+                    </div>
+
+
+                    <div class="stat-card">
+
+                        <div class="stat-icon green">
+                            🟢
+                        </div>
+
+                        <div class="stat-info">
+
+                            <span>
+                                BOT STATUS
+                            </span>
+
+                            <strong>
+                                Online
+                            </strong>
+
+                            <small class="positive">
+                                ● All systems operational
+                            </small>
+
+                        </div>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Quick Controls -->
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            QUICK CONTROLS
+                        </span>
+
+                        <h2>
+                            Manage your server
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="control-grid">
+
+
+                    <div class="control-card">
+
+                        <div class="control-icon">
+                            🛡️
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Moderation
+                            </h3>
+
+                            <p>
+                                Configure server protection
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="open-control"
+                            data-page-button="moderation"
+                        >
+                            Open
+                        </button>
+
+                    </div>
+
+
+                    <div class="control-card">
+
+                        <div class="control-icon">
+                            🤖
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Commands
+                            </h3>
+
+                            <p>
+                                Manage bot commands
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="open-control"
+                            data-page-button="commands"
+                        >
+                            Open
+                        </button>
+
+                    </div>
+
+
+                    <div class="control-card">
+
+                        <div class="control-icon">
+                            🎫
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Tickets
+                            </h3>
+
+                            <p>
+                                Configure your ticket system
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="open-control"
+                            data-page-button="tickets"
+                        >
+                            Open
+                        </button>
+
+                    </div>
+
+
+                    <div class="control-card">
+
+                        <div class="control-icon">
+                            👋
+                        </div>
+
+                        <div>
+
+                            <h3>
+                                Welcome
+                            </h3>
+
+                            <p>
+                                Configure member welcomes
+                            </p>
+
+                        </div>
+
+                        <button
+                            class="open-control"
+                            data-page-button="welcome"
+                        >
+                            Open
+                        </button>
+
+                    </div>
+
+                </div>
+
+
+
+                <!-- Recent Activity -->
+                <div class="section-heading">
+
+                    <div>
+
+                        <span class="section-label">
+                            RECENT ACTIVITY
+                        </span>
+
+                        <h2>
+                            Server activity
+                        </h2>
+
+                    </div>
+
+                </div>
+
+
+                <div class="activity-card">
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon">
+                            🟢
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                PixelBot came online
+                            </strong>
+
+                            <span>
+                                The bot is ready to manage
+                                your server.
+                            </span>
+
+                        </div>
+
+                        <time>
+                            Just now
+                        </time>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon">
+                            🛡️
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                Moderation system enabled
+                            </strong>
+
+                            <span>
+                                Automatic moderation is active.
+                            </span>
+
+                        </div>
+
+                        <time>
+                            Today
+                        </time>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon">
+                            🎫
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                Ticket system configured
+                            </strong>
+
+                            <span>
+                                Members can now create tickets.
+                            </span>
+
+                        </div>
+
+                        <time>
+                            Today
+                        </time>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 MODERATION
+            ====================================== -->
+
+            <section
+                id="page-moderation"
+                class="dashboard-page"
+            >
+
+                <div class="page-intro">
+
+                    <span class="section-label">
+                        SERVER PROTECTION
+                    </span>
+
+                    <h2>
+                        Moderation
+                    </h2>
+
+                    <p>
+                        Protect your community with
+                        PixelBot's moderation tools.
+                    </p>
+
+                </div>
+
+
+                <div class="settings-card">
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Auto Moderation
+                            </strong>
+
+                            <span>
+                                Automatically detect
+                                spam and harmful content.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Anti-Spam
+                            </strong>
+
+                            <span>
+                                Prevent users from
+                                flooding the server.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Link Protection
+                            </strong>
+
+                            <span>
+                                Automatically detect
+                                suspicious links.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Raid Protection
+                            </strong>
+
+                            <span>
+                                Help protect your server
+                                from sudden raids.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button class="primary-button">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 COMMANDS
+            ====================================== -->
+
+            <section
+                id="page-commands"
+                class="dashboard-page"
+            >
+
+                <div class="page-intro">
+
+                    <span class="section-label">
+                        BOT COMMANDS
+                    </span>
+
+                    <h2>
+                        Commands
+                    </h2>
+
+                    <p>
+                        Choose which commands PixelBot
+                        can use in your server.
+                    </p>
+
+                </div>
+
+
+                <div class="settings-card">
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                /help
+                            </strong>
+
+                            <span>
+                                Show the available commands.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                /warn
+                            </strong>
+
+                            <span>
+                                Warn a member.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                /kick
+                            </strong>
+
+                            <span>
+                                Remove a member from
+                                the server.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                /ban
+                            </strong>
+
+                            <span>
+                                Ban a member from
+                                the server.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button class="primary-button">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 TICKETS
+            ====================================== -->
+
+            <section
+                id="page-tickets"
+                class="dashboard-page"
+            >
+
+                <div class="page-intro">
+
+                    <span class="section-label">
+                        SUPPORT SYSTEM
+                    </span>
+
+                    <h2>
+                        Tickets
+                    </h2>
+
+                    <p>
+                        Configure how members contact
+                        your support team.
+                    </p>
+
+                </div>
+
+
+                <div class="settings-card">
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Ticket System
+                            </strong>
+
+                            <span>
+                                Allow members to create
+                                support tickets.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Staff Notifications
+                            </strong>
+
+                            <span>
+                                Notify staff when a ticket
+                                is created.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Auto Close
+                            </strong>
+
+                            <span>
+                                Automatically close inactive
+                                tickets.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button class="primary-button">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 WELCOME
+            ====================================== -->
+
+            <section
+                id="page-welcome"
+                class="dashboard-page"
+            >
+
+                <div class="page-intro">
+
+                    <span class="section-label">
+                        MEMBER EXPERIENCE
+                    </span>
+
+                    <h2>
+                        Welcome
+                    </h2>
+
+                    <p>
+                        Customize what happens when
+                        someone joins your server.
+                    </p>
+
+                </div>
+
+
+                <div class="form-card">
+
+                    <div class="form-group">
+
+                        <label>
+                            Welcome Channel
+                        </label>
+
+                        <select>
+
+                            <option>
+                                # welcome
+                            </option>
+
+                            <option>
+                                # general
+                            </option>
+
+                            <option>
+                                # community
+                            </option>
+
+                        </select>
+
+                    </div>
+
+
+                    <div class="form-group">
+
+                        <label>
+                            Welcome Message
+                        </label>
+
+                        <textarea>Welcome {user} to the server! 🎉</textarea>
+
+                    </div>
+
+
+                    <button class="primary-button">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 LOGS
+            ====================================== -->
+
+            <section
+                id="page-logs"
+                class="dashboard-page"
+            >
+
+                <div class="page-intro">
+
+                    <span class="section-label">
+                        SERVER HISTORY
+                    </span>
+
+                    <h2>
+                        Logs
+                    </h2>
+
+                    <p>
+                        View recent moderation and
+                        server events.
+                    </p>
+
+                </div>
+
+
+                <div class="activity-card">
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon">
+                            🛡️
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                Moderation system started
+                            </strong>
+
+                            <span>
+                                PixelBot enabled moderation.
+                            </span>
+
+                        </div>
+
+                        <time>
+                            Today
+                        </time>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon">
+                            👤
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                Member joined
+                            </strong>
+
+                            <span>
+                                A new member joined
+                                the server.
+                            </span>
+
+                        </div>
+
+                        <time>
+                            Today
+                        </time>
+
+                    </div>
+
+
+                    <div class="activity-item">
+
+                        <div class="activity-icon">
+                            🎫
+                        </div>
+
+                        <div class="activity-info">
+
+                            <strong>
+                                Ticket created
+                            </strong>
+
+                            <span>
+                                A member opened a
+                                support ticket.
+                            </span>
+
+                        </div>
+
+                        <time>
+                            Today
+                        </time>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 ANALYTICS
+            ====================================== -->
+
+            <section
+                id="page-analytics"
+                class="dashboard-page"
+            >
+
+                <div class="page-intro">
+
+                    <span class="section-label">
+                        SERVER DATA
+                    </span>
+
+                    <h2>
+                        Analytics
+                    </h2>
+
+                    <p>
+                        Track how your server is growing.
+                    </p>
+
+                </div>
+
+
+                <div class="analytics-placeholder">
+
+                    <div class="big-chart-icon">
+                        📊
+                    </div>
+
+                    <h3>
+                        Analytics Dashboard
+                    </h3>
+
+                    <p>
+                        Advanced server analytics will
+                        appear here once the bot is connected
+                        to your Discord server.
+                    </p>
+
+                    <button class="primary-button">
+                        Coming Soon
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 SETTINGS
+            ====================================== -->
+
+            <section
+                id="page-settings"
+                class="dashboard-page"
+            >
+
+                <div class="page-intro">
+
+                    <span class="section-label">
+                        DASHBOARD
+                    </span>
+
+                    <h2>
+                        Settings
+                    </h2>
+
+                    <p>
+                        Customize your PixelBot dashboard.
+                    </p>
+
+                </div>
+
+
+                <div class="settings-card">
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Notifications
+                            </strong>
+
+                            <span>
+                                Receive dashboard notifications.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Dashboard Animations
+                            </strong>
+
+                            <span>
+                                Enable dashboard animations.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                                checked
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <div class="setting-row">
+
+                        <div>
+
+                            <strong>
+                                Compact Mode
+                            </strong>
+
+                            <span>
+                                Make the dashboard more compact.
+                            </span>
+
+                        </div>
+
+                        <label class="switch">
+
+                            <input
+                                type="checkbox"
+                            >
+
+                            <span class="slider"></span>
+
+                        </label>
+
+                    </div>
+
+
+                    <button class="primary-button">
+                        Save Changes
+                    </button>
+
+                </div>
+
+            </section>
+
+
+
+            <!-- =====================================
+                 PREMIUM
+            ====================================== -->
+
+            <section
+                id="page-premium"
+                class="dashboard-page"
+            >
+
+                <div class="premium-hero">
+
+                    <div>
+
+                        <span class="premium-label">
+                            💎 PIXELBOT PREMIUM
+                        </span>
+
+                        <h2>
+                            Unlock the full PixelBot experience.
+                        </h2>
+
+                        <p>
+                            Get advanced tools, more control
+                            and exclusive server features.
+                        </p>
+
+                        <button class="premium-button">
+                            Upgrade to Premium
+                        </button>
+
+                    </div>
+
+
+                    <div class="premium-icon">
+                        👑
+                    </div>
+
+                </div>
+
+
+                <div class="premium-grid">
+
+
+                    <div class="premium-card">
+
+                        <span>
+                            🛡️
+                        </span>
+
+                        <h3>
+                            Advanced Moderation
+                        </h3>
+
+                        <p>
+                            More powerful moderation
+                            and protection tools.
+                        </p>
+
+                    </div>
+
+
+                    <div class="premium-card">
+
+                        <span>
+                            📊
+                        </span>
+
+                        <h3>
+                            Advanced Analytics
+                        </h3>
+
+                        <p>
+                            Get more detailed information
+                            about your server.
+                        </p>
+
+                    </div>
+
+
+                    <div class="premium-card">
+
+                        <span>
+                            ⚡
+                        </span>
+
+                        <h3>
+                            Faster Features
+                        </h3>
+
+                        <p>
+                            Unlock additional PixelBot
+                            features.
+                        </p>
+
+                    </div>
+
+
+                    <div class="premium-card">
+
+                        <span>
+                            🎨
+                        </span>
+
+                        <h3>
+                            Premium Themes
+                        </h3>
+
+                        <p>
+                            Unlock exclusive dashboard
+                            themes.
+                        </p>
+
+                    </div>
+
+
+                    <div class="premium-card">
+
+                        <span>
+                            💾
+                        </span>
+
+                        <h3>
+                            Cloud Backups
+                        </h3>
+
+                        <p>
+                            Keep your server settings
+                            backed up.
+                        </p>
+
+                    </div>
+
+
+                    <div class="premium-card">
+
+                        <span>
+                            ⭐
+                        </span>
+
+                        <h3>
+                            Priority Support
+                        </h3>
+
+                        <p>
+                            Get priority help when
+                            you need it.
+                        </p>
+
+                    </div>
+
+                </div>
+
+            </section>
+
+        </div>
+
+    </main>
+
+
+
+    <!-- ================================
+         NOTIFICATIONS
+    ================================= -->
+
+    <div
+        class="notification-panel"
+        id="notification-panel"
+    >
+
+        <div class="notification-header">
+
+            <strong>
+                Notifications
+            </strong>
+
+            <button id="close-notifications">
+                ×
+            </button>
+
+        </div>
+
+
+        <div class="notification-content">
+
+
+            <div class="notification-item">
+
+                <span>
+                    🟢
+                </span>
+
+                <div>
+
+                    <strong>
+                        Bot Online
+                    </strong>
+
+                    <p>
+                        PixelBot is currently online.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+            <div class="notification-item">
+
+                <span>
+                    💎
+                </span>
+
+                <div>
+
+                    <strong>
+                        Premium available
+                    </strong>
+
+                    <p>
+                        Check out the new premium perks.
+                    </p>
+
+                </div>
+
+            </div>
+
+
+        </div>
+
+    </div>
+
+
+
+    <script src="js/dashboard.js"></script>
+
+</body>
+
+</html>
+```
 

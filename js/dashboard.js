@@ -1,447 +1,184 @@
 ```javascript
-document.addEventListener("DOMContentLoaded", () => {
+document.addEventListener("DOMContentLoaded", function () {
 
-    /* =========================================
-       THEME TOGGLE
-    ========================================= */
+    console.log("Dashboard JavaScript loaded!");
 
-    const themeButton = document.getElementById("theme-toggle");
+    /* THEME */
 
-    function loadTheme() {
-
-        const savedTheme = localStorage.getItem("theme");
-
-        if (savedTheme === "light") {
-
-            document.body.classList.add("light");
-
-            if (themeButton) {
-                themeButton.textContent = "☀️";
-            }
-
-        } else {
-
-            document.body.classList.remove("light");
-
-            if (themeButton) {
-                themeButton.textContent = "🌙";
-            }
-
-        }
-    }
-
-    loadTheme();
-
+    const themeButton =
+        document.getElementById("theme-toggle");
 
     if (themeButton) {
 
-        themeButton.addEventListener("click", () => {
+        themeButton.addEventListener("click", function () {
 
             document.body.classList.toggle("light");
 
-            const lightMode =
-                document.body.classList.contains("light");
+            if (document.body.classList.contains("light")) {
 
-            localStorage.setItem(
-                "theme",
-                lightMode ? "light" : "dark"
-            );
+                localStorage.setItem("theme", "light");
 
-            themeButton.textContent =
-                lightMode ? "☀️" : "🌙";
+                themeButton.textContent = "☀️";
+
+            } else {
+
+                localStorage.setItem("theme", "dark");
+
+                themeButton.textContent = "🌙";
+
+            }
 
         });
 
     }
 
 
+    /* SIDEBAR */
 
-    /* =========================================
-       PAGE NAVIGATION
-    ========================================= */
-
-    const navLinks =
+    const buttons =
         document.querySelectorAll(".nav-link");
 
     const pages =
         document.querySelectorAll(".dashboard-page");
 
-    const pageTitle =
-        document.getElementById("page-title");
+
+    buttons.forEach(function (button) {
+
+        button.addEventListener("click", function (event) {
+
+            event.preventDefault();
+
+            const pageName =
+                button.getAttribute("data-page");
 
 
-    function openPage(pageName) {
+            pages.forEach(function (page) {
 
-        if (!pageName) return;
+                page.classList.remove(
+                    "active-page"
+                );
 
-
-        /* Hide all pages */
-
-        pages.forEach(page => {
-
-            page.classList.remove(
-                "active-page"
-            );
-
-        });
+            });
 
 
-        /* Show selected page */
+            const page =
+                document.getElementById(pageName);
 
-        const selectedPage =
-            document.getElementById(pageName);
+            if (page) {
 
-        if (selectedPage) {
-
-            selectedPage.classList.add(
-                "active-page"
-            );
-
-        }
-
-
-        /* Update active sidebar button */
-
-        navLinks.forEach(link => {
-
-            link.classList.remove("active");
-
-            if (
-                link.dataset.page === pageName
-            ) {
-
-                link.classList.add("active");
-
-            }
-
-        });
-
-
-        /* Page titles */
-
-        const titles = {
-
-            dashboard: "Dashboard",
-            commands: "Commands",
-            moderation: "Moderation",
-            tickets: "Tickets",
-            welcome: "Welcome",
-            logs: "Logs",
-            members: "Members",
-            analytics: "Analytics",
-            premium: "Premium"
-
-        };
-
-
-        if (pageTitle) {
-
-            pageTitle.textContent =
-                titles[pageName] || "Dashboard";
-
-        }
-
-
-        window.scrollTo({
-            top: 0,
-            behavior: "smooth"
-        });
-
-    }
-
-
-
-    /* =========================================
-       SIDEBAR BUTTONS
-    ========================================= */
-
-    navLinks.forEach(link => {
-
-        link.addEventListener(
-            "click",
-            event => {
-
-                event.preventDefault();
-
-                openPage(
-                    link.dataset.page
+                page.classList.add(
+                    "active-page"
                 );
 
             }
-        );
+
+
+            buttons.forEach(function (item) {
+
+                item.classList.remove("active");
+
+            });
+
+            button.classList.add("active");
+
+
+            const title =
+                document.getElementById("page-title");
+
+            if (title) {
+
+                title.textContent =
+                    button.textContent.trim();
+
+            }
+
+        });
 
     });
 
 
+    /* QUICK CONTROL BUTTONS */
 
-    /* =========================================
-       BUTTONS WITH data-page
-    ========================================= */
-
-    document
-        .querySelectorAll("[data-page]")
-        .forEach(element => {
-
-            /*
-             * Skip sidebar links because they
-             * already have their own listener.
-             */
-
-            if (
-                element.classList.contains(
-                    "nav-link"
-                )
-            ) {
-                return;
-            }
+    const controls =
+        document.querySelectorAll(".open-control");
 
 
-            element.addEventListener(
-                "click",
-                event => {
+    controls.forEach(function (button) {
 
-                    event.preventDefault();
+        button.addEventListener("click", function () {
 
-                    openPage(
-                        element.dataset.page
-                    );
-
-                }
-            );
-
-        });
+            const pageName =
+                button.getAttribute("data-target");
 
 
+            pages.forEach(function (page) {
 
-    /* =========================================
-       QUICK CONTROL BUTTONS
-    ========================================= */
-
-    document
-        .querySelectorAll(".open-control")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                event => {
-
-                    event.preventDefault();
-
-                    event.stopPropagation();
-
-                    const target =
-                        button.dataset.target;
-
-                    if (target) {
-
-                        openPage(target);
-
-                    }
-
-                }
-            );
-
-        });
-
-
-
-    /* =========================================
-       SETTINGS SWITCHES
-    ========================================= */
-
-    document
-        .querySelectorAll(".switch input")
-        .forEach(toggle => {
-
-            const setting =
-                toggle.dataset.setting;
-
-
-            /* Load saved setting */
-
-            if (setting) {
-
-                const saved =
-                    localStorage.getItem(
-                        "setting_" + setting
-                    );
-
-                if (saved !== null) {
-
-                    toggle.checked =
-                        saved === "true";
-
-                }
-
-            }
-
-
-            /* Save setting when changed */
-
-            toggle.addEventListener(
-                "change",
-                () => {
-
-                    if (!setting) return;
-
-                    localStorage.setItem(
-                        "setting_" + setting,
-                        toggle.checked
-                    );
-
-                }
-            );
-
-        });
-
-
-
-    /* =========================================
-       NOTIFICATIONS
-    ========================================= */
-
-    const notificationButton =
-        document.getElementById(
-            "notification-button"
-        );
-
-    const notificationPanel =
-        document.getElementById(
-            "notification-panel"
-        );
-
-    const notificationClose =
-        document.getElementById(
-            "notification-close"
-        );
-
-
-    if (
-        notificationButton &&
-        notificationPanel
-    ) {
-
-        notificationButton.addEventListener(
-            "click",
-            event => {
-
-                event.stopPropagation();
-
-                notificationPanel.classList.toggle(
-                    "open"
+                page.classList.remove(
+                    "active-page"
                 );
 
-            }
-        );
-
-    }
+            });
 
 
-    if (notificationClose) {
+            const page =
+                document.getElementById(pageName);
 
-        notificationClose.addEventListener(
-            "click",
-            event => {
+            if (page) {
 
-                event.stopPropagation();
-
-                notificationPanel.classList.remove(
-                    "open"
-                );
-
-            }
-        );
-
-    }
-
-
-    /* Close notifications when clicking outside */
-
-    document.addEventListener(
-        "click",
-        event => {
-
-            if (
-                notificationPanel &&
-                notificationButton &&
-                !notificationPanel.contains(
-                    event.target
-                ) &&
-                !notificationButton.contains(
-                    event.target
-                )
-            ) {
-
-                notificationPanel.classList.remove(
-                    "open"
+                page.classList.add(
+                    "active-page"
                 );
 
             }
 
+
+            buttons.forEach(function (item) {
+
+                item.classList.remove("active");
+
+                if (
+                    item.getAttribute("data-page")
+                    === pageName
+                ) {
+
+                    item.classList.add("active");
+
+                }
+
+            });
+
+
+            const title =
+                document.getElementById("page-title");
+
+            if (title) {
+
+                title.textContent =
+                    pageName.charAt(0).toUpperCase()
+                    + pageName.slice(1);
+
+            }
+
+        });
+
+    });
+
+
+    /* LOAD THEME */
+
+    const savedTheme =
+        localStorage.getItem("theme");
+
+    if (savedTheme === "light") {
+
+        document.body.classList.add("light");
+
+        if (themeButton) {
+            themeButton.textContent = "☀️";
         }
-    );
-
-
-
-    /* =========================================
-       PREMIUM BUTTON
-    ========================================= */
-
-    document
-        .querySelectorAll(".premium-button")
-        .forEach(button => {
-
-            button.addEventListener(
-                "click",
-                event => {
-
-                    event.preventDefault();
-
-                    alert(
-                        "Premium checkout will be connected later."
-                    );
-
-                }
-            );
-
-        });
-
-
-
-    /* =========================================
-       SERVER SELECTOR
-    ========================================= */
-
-    const serverBox =
-        document.querySelector(
-            ".server-box"
-        );
-
-
-    if (serverBox) {
-
-        serverBox.addEventListener(
-            "click",
-            () => {
-
-                alert(
-                    "Server selection will be connected later."
-                );
-
-            }
-        );
 
     }
 
-
-
-    /* =========================================
-       DASHBOARD LOADED
-    ========================================= */
-
-    console.log(
-        "PixelBot Dashboard loaded successfully!"
-    );
 
 });
 ```

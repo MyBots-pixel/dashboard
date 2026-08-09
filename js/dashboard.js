@@ -1,3 +1,1 @@
-```javascript
-alert("PixelBot JavaScript is working!");
-```
+alert("IT WORKS!");

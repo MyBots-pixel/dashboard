@@ -1,59 +1,54 @@
 ```javascript
 document.addEventListener("DOMContentLoaded", () => {
 
-    /* =========================================
+    /* ================================
        THEME
-    ========================================= */
+    ================================= */
 
-    const themeButton =
-        document.getElementById("theme-toggle");
+    const themeButton = document.getElementById("theme-toggle");
 
-    const savedTheme =
-        localStorage.getItem("theme");
+    function loadTheme() {
+        const savedTheme = localStorage.getItem("theme");
 
-    if (savedTheme === "light") {
-        document.body.classList.add("light");
+        if (savedTheme === "light") {
+            document.body.classList.add("light");
 
-        if (themeButton) {
-            themeButton.textContent = "☀️";
-        }
-    } else {
-        document.body.classList.remove("light");
+            if (themeButton) {
+                themeButton.textContent = "☀️";
+            }
+        } else {
+            document.body.classList.remove("light");
 
-        if (themeButton) {
-            themeButton.textContent = "🌙";
+            if (themeButton) {
+                themeButton.textContent = "🌙";
+            }
         }
     }
 
+    loadTheme();
 
     if (themeButton) {
-
         themeButton.addEventListener("click", () => {
 
             document.body.classList.toggle("light");
 
-            if (document.body.classList.contains("light")) {
+            const isLight =
+                document.body.classList.contains("light");
 
-                localStorage.setItem("theme", "light");
+            localStorage.setItem(
+                "theme",
+                isLight ? "light" : "dark"
+            );
 
-                themeButton.textContent = "☀️";
-
-            } else {
-
-                localStorage.setItem("theme", "dark");
-
-                themeButton.textContent = "🌙";
-
-            }
-
+            themeButton.textContent =
+                isLight ? "☀️" : "🌙";
         });
-
     }
 
 
-    /* =========================================
-       SIDEBAR NAVIGATION
-    ========================================= */
+    /* ================================
+       PAGE NAVIGATION
+    ================================= */
 
     const navLinks =
         document.querySelectorAll(".nav-link");
@@ -64,133 +59,132 @@ document.addEventListener("DOMContentLoaded", () => {
     const pageTitle =
         document.getElementById("page-title");
 
+
+    function openPage(pageName) {
+
+        if (!pageName) return;
+
+        /* Hide every page */
+
+        pages.forEach(page => {
+            page.classList.remove("active-page");
+        });
+
+
+        /* Show selected page */
+
+        const selectedPage =
+            document.getElementById(pageName);
+
+        if (selectedPage) {
+            selectedPage.classList.add("active-page");
+        }
+
+
+        /* Update sidebar */
+
+        navLinks.forEach(link => {
+
+            link.classList.remove("active");
+
+            if (
+                link.dataset.page === pageName
+            ) {
+                link.classList.add("active");
+            }
+
+        });
+
+
+        /* Page titles */
+
+        const titles = {
+
+            dashboard: "Dashboard",
+            commands: "Commands",
+            moderation: "Moderation",
+            tickets: "Tickets",
+            welcome: "Welcome",
+            logs: "Logs",
+            members: "Members",
+            analytics: "Analytics",
+            premium: "Premium"
+
+        };
+
+
+        if (pageTitle) {
+
+            pageTitle.textContent =
+                titles[pageName] || "Dashboard";
+
+        }
+
+
+        window.scrollTo({
+            top: 0,
+            behavior: "smooth"
+        });
+
+    }
+
+
+    /* Sidebar buttons */
+
     navLinks.forEach(link => {
 
         link.addEventListener("click", event => {
 
             event.preventDefault();
 
-            const page =
-                link.dataset.page;
-
-            if (!page) return;
-
-
-            /* Remove active links */
-
-            navLinks.forEach(item => {
-                item.classList.remove("active");
-            });
-
-            link.classList.add("active");
-
-
-            /* Hide pages */
-
-            pages.forEach(section => {
-                section.classList.remove("active-page");
-            });
-
-
-            /* Show selected page */
-
-            const selectedPage =
-                document.getElementById(page);
-
-            if (selectedPage) {
-
-                selectedPage.classList.add(
-                    "active-page"
-                );
-
-            }
-
-
-            /* Update title */
-
-            if (pageTitle) {
-
-                const titles = {
-
-                    dashboard:
-                        "Dashboard",
-
-                    commands:
-                        "Commands",
-
-                    moderation:
-                        "Moderation",
-
-                    tickets:
-                        "Tickets",
-
-                    welcome:
-                        "Welcome",
-
-                    logs:
-                        "Logs",
-
-                    members:
-                        "Members",
-
-                    analytics:
-                        "Analytics",
-
-                    premium:
-                        "Premium"
-
-                };
-
-                pageTitle.textContent =
-                    titles[page] || "Dashboard";
-
-            }
-
-
-            /* Scroll to top */
-
-            window.scrollTo({
-                top: 0,
-                behavior: "smooth"
-            });
+            openPage(
+                link.dataset.page
+            );
 
         });
 
     });
 
 
-    /* =========================================
-       CONTROL BUTTONS
-    ========================================= */
+    /* ================================
+       ANY ELEMENT WITH data-page
+    ================================= */
+
+    document
+        .querySelectorAll("[data-page]")
+        .forEach(element => {
+
+            element.addEventListener("click", event => {
+
+                event.preventDefault();
+
+                openPage(
+                    element.dataset.page
+                );
+
+            });
+
+        });
+
+
+    /* ================================
+       QUICK CONTROL BUTTONS
+    ================================= */
 
     document
         .querySelectorAll(".open-control")
         .forEach(button => {
 
-            button.addEventListener("click", () => {
+            button.addEventListener("click", event => {
+
+                event.preventDefault();
+                event.stopPropagation();
 
                 const target =
                     button.dataset.target;
 
-                if (!target) {
-
-                    alert(
-                        "This control is ready to be configured."
-                    );
-
-                    return;
-                }
-
-
-                const targetElement =
-                    document.getElementById(target);
-
-                if (targetElement) {
-
-                    targetElement.scrollIntoView({
-                        behavior: "smooth"
-                    });
-
+                if (target) {
+                    openPage(target);
                 }
 
             });
@@ -198,35 +192,13 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-    /* =========================================
-       SETTINGS SWITCHES
-    ========================================= */
+    /* ================================
+       SETTINGS
+    ================================= */
 
     document
         .querySelectorAll(".switch input")
         .forEach(toggle => {
-
-            toggle.addEventListener("change", () => {
-
-                const setting =
-                    toggle.dataset.setting;
-
-                const enabled =
-                    toggle.checked;
-
-                if (setting) {
-
-                    localStorage.setItem(
-                        "setting_" + setting,
-                        enabled
-                    );
-
-                }
-
-            });
-
-
-            /* Load saved setting */
 
             const setting =
                 toggle.dataset.setting;
@@ -247,12 +219,24 @@ document.addEventListener("DOMContentLoaded", () => {
 
             }
 
+
+            toggle.addEventListener("change", () => {
+
+                if (!setting) return;
+
+                localStorage.setItem(
+                    "setting_" + setting,
+                    toggle.checked
+                );
+
+            });
+
         });
 
 
-    /* =========================================
+    /* ================================
        NOTIFICATIONS
-    ========================================= */
+    ================================= */
 
     const notificationButton =
         document.getElementById(
@@ -295,7 +279,9 @@ document.addEventListener("DOMContentLoaded", () => {
 
         notificationClose.addEventListener(
             "click",
-            () => {
+            event => {
+
+                event.stopPropagation();
 
                 notificationPanel.classList.remove(
                     "open"
@@ -328,18 +314,20 @@ document.addEventListener("DOMContentLoaded", () => {
     );
 
 
-    /* =========================================
-       PREMIUM BUTTONS
-    ========================================= */
+    /* ================================
+       PREMIUM
+    ================================= */
 
     document
         .querySelectorAll(".premium-button")
         .forEach(button => {
 
-            button.addEventListener("click", () => {
+            button.addEventListener("click", event => {
+
+                event.preventDefault();
 
                 alert(
-                    "Premium features will be connected to your payment system later."
+                    "Premium checkout will be connected later."
                 );
 
             });
@@ -347,29 +335,28 @@ document.addEventListener("DOMContentLoaded", () => {
         });
 
 
-    /* =========================================
+    /* ================================
        SERVER SELECTOR
-    ========================================= */
+    ================================= */
 
     const serverBox =
         document.querySelector(".server-box");
 
     if (serverBox) {
 
-        serverBox.addEventListener("click", () => {
+        serverBox.addEventListener(
+            "click",
+            () => {
 
-            alert(
-                "Server selector coming soon."
-            );
+                alert(
+                    "Server selection will be connected later."
+                );
 
-        });
+            }
+        );
 
     }
 
-
-    /* =========================================
-       DASHBOARD READY
-    ========================================= */
 
     console.log(
         "PixelBot Dashboard loaded successfully."
